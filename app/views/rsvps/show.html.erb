@@ -1,0 +1,22 @@
+<p>
+  <strong>Name:</strong>
+  <%= @rsvp.name %>
+</p>
+
+<p>
+  <strong>Contact number:</strong>
+  <%= @rsvp.contact_number %>
+</p>
+
+<p>
+  <strong>Attending:</strong>
+  <%= @rsvp.attending %>
+</p>
+
+<p>
+  <strong>Number of guests:</strong>
+  <%= @rsvp.number_of_guests %>
+</p>
+
+<%= link_to 'Edit', edit_rsvp_path(@rsvp) %> |
+<%= link_to 'Back', rsvps_path %>

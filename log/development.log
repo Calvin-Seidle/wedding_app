@@ -1,0 +1,1320 @@
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20170810082519)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "surname" varchar, "admin" boolean, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (24.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170810082519"]]
+  [1m[35m (7.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (5.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-08-10 08:28:22.460371"], ["updated_at", "2017-08-10 08:28:22.460371"]]
+  [1m[35m (11.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+Started GET "/applicants/sign_in" for 127.0.0.1 at 2017-08-10 10:28:54 +0200
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/applicants/sign_in"):
+  
+actionpack (5.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.3) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.3) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.3) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:29:03 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  Rendered partials/_navbar.html.erb (0.6ms)
+Completed 200 OK in 27036ms (Views: 27025.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:30:56 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  Rendered partials/_navbar.html.erb (0.6ms)
+Completed 200 OK in 139ms (Views: 116.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:31:21 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.7ms)
+  Rendered partials/_notifications.html.erb (2.5ms)
+  Rendered partials/_navbar.html.erb (0.7ms)
+Completed 200 OK in 127ms (Views: 125.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:31:53 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (2.4ms)
+  Rendered partials/_navbar.html.erb (5.8ms)
+Completed 200 OK in 180ms (Views: 178.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:31:59 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  Rendered partials/_navbar.html.erb (0.4ms)
+Completed 200 OK in 123ms (Views: 121.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:32:01 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  Rendered partials/_navbar.html.erb (0.6ms)
+Completed 200 OK in 114ms (Views: 113.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:32:02 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (3.7ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  Rendered partials/_navbar.html.erb (0.5ms)
+Completed 200 OK in 207ms (Views: 205.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:32:03 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  Rendered partials/_navbar.html.erb (0.5ms)
+Completed 200 OK in 128ms (Views: 119.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:35:46 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (5.2ms)
+  Rendered partials/_navbar.html.erb (0.5ms)
+Completed 200 OK in 126ms (Views: 122.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:41:05 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (31.0ms)
+  Rendered partials/_navbar.html.erb (0.8ms)
+Completed 200 OK in 174ms (Views: 172.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:42:10 +0200
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (2.5ms)
+  Rendered partials/_notifications.html.erb (5.2ms)
+  Rendered partials/_navbar.html.erb (4.9ms)
+Completed 200 OK in 1476ms (Views: 1453.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:52:36 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (2.1ms)
+  Rendered partials/_navbar.html.erb (0.7ms)
+Completed 200 OK in 372ms (Views: 334.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:52:52 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  Rendered partials/_navbar.html.erb (0.5ms)
+Completed 200 OK in 144ms (Views: 142.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:54:00 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (1.2ms)
+  Rendered partials/_navbar.html.erb (13.9ms)
+Completed 200 OK in 207ms (Views: 205.0ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRsvps (20170810085749)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "rsvps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "contact_number" varchar, "attending" boolean, "number_of_guests" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170810085749"]]
+  [1m[35m (21.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2017-08-10 10:59:04 +0200
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (2.3ms)
+  Rendered partials/_notifications.html.erb (5.8ms)
+  Rendered partials/_navbar.html.erb (15.2ms)
+Completed 200 OK in 13151ms (Views: 13132.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:03:59 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  Rendered partials/_navbar.html.erb (1427.2ms)
+Completed 500 Internal Server Error in 1638ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `rsvps' for #<#<Class:0x007f97081f1e58>:0x007f9700011708>
+Did you mean?  rsvps_url):
+    13: 
+    14:     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    15:       <ul class="nav navbar-nav">
+    16:         <li><a <% if current_page?(rsvps) %>class="active"<% end %>href="/rsvps">RSVP</a></li>
+    17:         <li><a href="/pages/home">HOME</a></li>
+    18:       </ul>
+    19: 
+  
+app/views/partials/_navbar.html.erb:16:in `_app_views_partials__navbar_html_erb___769443291892439910_70143301836140'
+app/views/layouts/application.html.erb:17:in `_app_views_layouts_application_html_erb__46746620238747140_70143258463680'
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:04:19 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (2.7ms)
+  Rendered partials/_notifications.html.erb (1.1ms)
+  Rendered partials/_navbar.html.erb (1.9ms)
+Completed 200 OK in 235ms (Views: 232.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:05:09 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  Rendered partials/_navbar.html.erb (4.4ms)
+Completed 200 OK in 126ms (Views: 123.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:05:12 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+  Rendered partials/_notifications.html.erb (3.9ms)
+  Rendered partials/_navbar.html.erb (9.5ms)
+Completed 200 OK in 217ms (Views: 202.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:05:16 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+  Rendered partials/_notifications.html.erb (3.5ms)
+  Rendered partials/_navbar.html.erb (1.5ms)
+Completed 200 OK in 154ms (Views: 151.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:05:18 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (2.6ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (9.8ms)
+  Rendered partials/_notifications.html.erb (5.1ms)
+  Rendered partials/_navbar.html.erb (3.5ms)
+Completed 200 OK in 216ms (Views: 206.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:05:51 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (2.2ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  Rendered partials/_navbar.html.erb (17.2ms)
+Completed 500 Internal Server Error in 198ms (ActiveRecord: 0.3ms)
+
+
+  
+SyntaxError (/var/www/html/RubyOnRails/wedding_app/app/views/partials/_navbar.html.erb:16: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+...( if current_page?(rsvps_url) );@output_buffer.safe_append='...
+...                               ^
+/var/www/html/RubyOnRails/wedding_app/app/views/partials/_navbar.html.erb:16: syntax error, unexpected keyword_end, expecting ')'
+...nd='class="active"'.freeze; end ;@output_buffer.safe_append=...
+...                               ^
+/var/www/html/RubyOnRails/wedding_app/app/views/partials/_navbar.html.erb:39: syntax error, unexpected keyword_ensure, expecting ')'
+/var/www/html/RubyOnRails/wedding_app/app/views/partials/_navbar.html.erb:41: syntax error, unexpected keyword_end, expecting ')'):
+  
+app/views/partials/_navbar.html.erb:16: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/partials/_navbar.html.erb:16: syntax error, unexpected keyword_end, expecting ')'
+app/views/partials/_navbar.html.erb:39: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/partials/_navbar.html.erb:41: syntax error, unexpected keyword_end, expecting ')'
+app/views/layouts/application.html.erb:17:in `_app_views_layouts_application_html_erb__46746620238747140_70143262046160'
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:06:53 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.2ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (6.6ms)
+  Rendered partials/_notifications.html.erb (0.9ms)
+  Rendered partials/_navbar.html.erb (3.7ms)
+Completed 200 OK in 156ms (Views: 153.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:06:57 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  Rendered partials/_navbar.html.erb (1.2ms)
+Completed 200 OK in 140ms (Views: 138.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:06:59 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.2ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (5.4ms)
+  Rendered partials/_notifications.html.erb (1.5ms)
+  Rendered partials/_navbar.html.erb (1.4ms)
+Completed 200 OK in 133ms (Views: 131.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:07:20 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (2.6ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (7.4ms)
+  Rendered partials/_notifications.html.erb (3.6ms)
+  Rendered partials/_navbar.html.erb (8.9ms)
+Completed 200 OK in 156ms (Views: 150.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:07:39 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.2ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (10.0ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  Rendered partials/_navbar.html.erb (2.1ms)
+Completed 200 OK in 182ms (Views: 180.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:09:22 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (7.3ms)
+  Rendered partials/_notifications.html.erb (0.9ms)
+  Rendered partials/_navbar.html.erb (1.5ms)
+Completed 200 OK in 163ms (Views: 161.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-08-10 11:09:37 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.3ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (224.5ms)
+  Rendered partials/_notifications.html.erb (3.5ms)
+  Rendered partials/_navbar.html.erb (1.7ms)
+Completed 200 OK in 493ms (Views: 415.7ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-10 11:09:48 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ojuXLtkz8BrrYmdp+jGYhHdc2sVde2y5xvnGoqIyOe7O0LuSQPEylM8pYueMyGfwDJV8eIKY0BC9b7ZxYF5dsA==", "user"=>{"email"=>"calvin@littlepig.cc", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "calvin@littlepig.cc"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.5ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (32.6ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  Rendered partials/_navbar.html.erb (5.5ms)
+Completed 200 OK in 892ms (Views: 193.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-10 11:09:59 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tau8Xdsz+aR5APDUnZXJfp/FcqsjduWjaWnlVRl8ACrZQJDhQvE7Kl1L9VrrbDYK5AzUFvyVWQoS/5WG2xBkdA==", "user"=>{"email"=>"calvin@littlepig.cc", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "calvin@littlepig.cc"], ["LIMIT", 1]]
+  [1m[35mSQL (7.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "calvin@littlepig.cc"], ["encrypted_password", "$2a$11$a/vGPu/JwL93.Ai6VVjY6e9Wc5fC7UKjBh9uqvcUKtR/ycNz6gYZ2"], ["created_at", "2017-08-10 09:09:59.779685"], ["updated_at", "2017-08-10 09:09:59.779685"]]
+  [1m[35m (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_ip" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["sign_in_count", 1], ["current_sign_in_at", "2017-08-10 09:09:59.809800"], ["last_sign_in_at", "2017-08-10 09:09:59.809800"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_ip", "127.0.0.1"], ["updated_at", "2017-08-10 09:09:59.819101"], ["id", 1]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 583ms (ActiveRecord: 24.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:09:59 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (9.2ms)
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (24.0ms)
+Completed 200 OK in 167ms (Views: 157.0ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:10:18 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (3.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.1ms)
+Completed 200 OK in 138ms (Views: 136.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:10:32 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (2.2ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.0ms)
+Completed 200 OK in 147ms (Views: 137.1ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:10:34 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.8ms)
+Completed 200 OK in 140ms (Views: 138.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:11:24 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (3.6ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (5.7ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.5ms)
+Completed 200 OK in 142ms (Views: 136.0ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:11:25 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (12.4ms)
+Completed 200 OK in 203ms (Views: 198.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:12:03 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.5ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (10.5ms)
+Completed 200 OK in 166ms (Views: 164.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:12:22 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (8.1ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.4ms)
+Completed 200 OK in 149ms (Views: 146.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:12:51 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (73.7ms)
+  Rendered rsvps/new.html.erb within layouts/application (78.6ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.8ms)
+Completed 200 OK in 281ms (Views: 251.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:14:15 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (10.1ms)
+  Rendered rsvps/new.html.erb within layouts/application (16.4ms)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (no implicit conversion of Symbol into Integer):
+    3: 
+    4:   <div class="form-inputs">
+    5:     <%= f.input :name, label: "Name & Surname" %>
+    6:     <%= f.input :contact_number, "Contact Number" %>
+    7:     <%= f.input :attending %>
+    8:     <%= f.input :number_of_guests, label: "Number Of Guests Attending" %>
+    9:   </div>
+  
+app/views/rsvps/_form.html.erb:6:in `block in _app_views_rsvps__form_html_erb__683982479120966435_70143431279100'
+app/views/rsvps/_form.html.erb:1:in `_app_views_rsvps__form_html_erb__683982479120966435_70143431279100'
+app/views/rsvps/new.html.erb:3:in `_app_views_rsvps_new_html_erb__414319447122319996_70143431575160'
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:14:27 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (38.0ms)
+  Rendered rsvps/new.html.erb within layouts/application (39.9ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (5.2ms)
+Completed 200 OK in 189ms (Views: 186.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:16:19 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (85.0ms)
+  Rendered rsvps/new.html.erb within layouts/application (92.1ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (4.6ms)
+Completed 200 OK in 229ms (Views: 225.7ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/rsvps" for 127.0.0.1 at 2017-08-10 11:16:52 +0200
+Processing by RsvpsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HG73G3kTuLu/oHo2BScwzoQWrkGLEOOxoliAMakoxwpwhdun4NF6NZvrf7hz3s+6/98I/FTzXxjZzvDia0SjVA==", "rsvp"=>{"name"=>"aaa bbb", "contact_number"=>"0834200117", "attending"=>"true", "number_of_guests"=>"2"}, "commit"=>"Create Rsvp"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "rsvps" ("name", "contact_number", "attending", "number_of_guests", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "aaa bbb"], ["contact_number", "0834200117"], ["attending", "t"], ["number_of_guests", 2], ["created_at", "2017-08-10 09:16:52.787936"], ["updated_at", "2017-08-10 09:16:52.787936"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rsvps/1
+Completed 302 Found in 23ms (ActiveRecord: 9.7ms)
+
+
+Started GET "/rsvps/1" for 127.0.0.1 at 2017-08-10 11:16:52 +0200
+Processing by RsvpsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT  "rsvps".* FROM "rsvps" WHERE "rsvps"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsvps/show.html.erb within layouts/application
+  Rendered rsvps/show.html.erb within layouts/application (1.9ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (8.9ms)
+Completed 200 OK in 177ms (Views: 143.4ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:17:01 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.2ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (2.6ms)
+  Rendered partials/_notifications.html.erb (2.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.2ms)
+Completed 200 OK in 158ms (Views: 153.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:17:41 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (6.7ms)
+  Rendered partials/_notifications.html.erb (5.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (5.9ms)
+Completed 200 OK in 164ms (Views: 162.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/rsvps/1" for 127.0.0.1 at 2017-08-10 11:17:47 +0200
+Processing by RsvpsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRsvp Load (1.0ms)[0m  [1m[34mSELECT  "rsvps".* FROM "rsvps" WHERE "rsvps"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering rsvps/show.html.erb within layouts/application
+  Rendered rsvps/show.html.erb within layouts/application (1.1ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (5.4ms)
+Completed 200 OK in 149ms (Views: 142.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:17:49 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.2ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (5.2ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (9.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (12.5ms)
+Completed 200 OK in 115ms (Views: 103.6ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:21:10 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.2ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (34.6ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (56.8ms)
+Completed 200 OK in 230ms (Views: 226.2ms | ActiveRecord: 10.4ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:21:18 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (18.2ms)
+  Rendered rsvps/new.html.erb within layouts/application (22.6ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (9.1ms)
+Completed 200 OK in 140ms (Views: 137.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/rsvps" for 127.0.0.1 at 2017-08-10 11:21:32 +0200
+Processing by RsvpsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hECmoX8OMO4kmq7SIeQrqXNRwN2V1Bb18K3GIUYodhK5cBciMR7d/B7RQWNzKy7mK7Af5WnyLfWuzA67eUq2IQ==", "rsvp"=>{"name"=>"bbb ccc", "contact_number"=>"123", "attending"=>"false", "number_of_guests"=>"0"}, "commit"=>"Create Rsvp"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.6ms)[0m  [1m[32mINSERT INTO "rsvps" ("name", "contact_number", "attending", "number_of_guests", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "bbb ccc"], ["contact_number", "123"], ["attending", "f"], ["number_of_guests", 0], ["created_at", "2017-08-10 09:21:32.808392"], ["updated_at", "2017-08-10 09:21:32.808392"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 19ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:21:32 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (1.0ms)
+  Rendered partials/_notifications.html.erb (4.5ms)
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (8.0ms)
+Completed 200 OK in 151ms (Views: 144.4ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2017-08-10 11:21:48 +0200
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvps"[0m
+  [1m[36mRsvp Load (0.2ms)[0m  [1m[34mSELECT  "rsvps".* FROM "rsvps" ORDER BY "rsvps"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (86.9ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_secondary_navigation.html.haml (19.2ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_navigation.html.haml (29.6ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (8.5ms)
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml (12.9ms)
+Completed 200 OK in 3644ms (Views: 1189.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2017-08-10 11:22:04 +0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY users.id desc LIMIT ? OFFSET ?[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (213.3ms)
+Completed 200 OK in 291ms (Views: 259.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/user/1/edit?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2017-08-10 11:22:10 +0200
+Processing by RailsAdmin::MainController#edit as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user", "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/edit.html.haml within layouts/rails_admin/pjax
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (5.6ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (0.3ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_boolean.html.haml (3.3ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (0.4ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (4.7ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (0.3ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_datetime.html.haml (11.0ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_datetime.html.haml (4.2ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (20.4ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_datetime.html.haml (1.1ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_datetime.html.haml (1.0ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (5.4ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_form_field.html.haml (0.4ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/_submit_buttons.html.haml (21.6ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/edit.html.haml within layouts/rails_admin/pjax (213.4ms)
+Completed 200 OK in 286ms (Views: 266.1ms | ActiveRecord: 0.3ms)
+
+
+Started PUT "/admin/user/1/edit" for 127.0.0.1 at 2017-08-10 11:22:28 +0200
+Processing by RailsAdmin::MainController#edit as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YQjk22AmBY10OChumbANXJCwfhEZ/uZeulbwmgT6zshVnNCW6WM72UXv0crY2WoYgq4sqsLf1DnZxdXHOpySvw==", "user"=>{"name"=>"Calvin", "surname"=>"Seidle", "admin"=>"1", "email"=>"calvin@littlepig.cc", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "reset_password_sent_at"=>"[FILTERED]", "remember_created_at"=>"", "sign_in_count"=>"1", "current_sign_in_at"=>"August 10, 2017 09:09", "last_sign_in_at"=>"August 10, 2017 09:09", "current_sign_in_ip"=>"127.0.0.1", "last_sign_in_ip"=>"127.0.0.1"}, "return_to"=>"http://localhost:3000/admin/user", "_save"=>"", "model_name"=>"user", "id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (5.0ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "surname" = ?, "admin" = ?, "current_sign_in_at" = ?, "last_sign_in_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "Calvin"], ["surname", "Seidle"], ["admin", "t"], ["current_sign_in_at", "2017-08-10 09:09:00"], ["last_sign_in_at", "2017-08-10 09:09:00"], ["updated_at", "2017-08-10 09:22:28.438131"], ["id", 1]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admin/user
+Completed 302 Found in 62ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/admin/user" for 127.0.0.1 at 2017-08-10 11:22:28 +0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"user"}
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY users.id desc LIMIT ? OFFSET ?[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application (142.5ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_secondary_navigation.html.haml (22.9ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_navigation.html.haml (41.1ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (10.8ms)
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml (31.0ms)
+Completed 200 OK in 657ms (Views: 631.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/rsvp?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2017-08-10 11:22:38 +0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"rsvp"}
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT  "rsvps".* FROM "rsvps" ORDER BY rsvps.id desc LIMIT ? OFFSET ?[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (143.7ms)
+Completed 200 OK in 185ms (Views: 167.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2017-08-10 11:22:48 +0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY users.id desc LIMIT ? OFFSET ?[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (105.3ms)
+Completed 200 OK in 152ms (Views: 134.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/user" for 127.0.0.1 at 2017-08-10 11:25:34 +0200
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"user"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 143ms (ActiveRecord: 1.5ms)
+
+
+  
+CanCan::AccessDenied (You are not authorized to access this page.):
+  
+cancan (1.6.10) lib/cancan/ability.rb:208:in `authorize!'
+rails_admin (1.2.0) lib/rails_admin/extensions/cancancan/authorization_adapter.rb:11:in `initialize'
+rails_admin (1.2.0) lib/rails_admin/config.rb:153:in `new'
+rails_admin (1.2.0) lib/rails_admin/config.rb:153:in `block in authorize_with'
+rails_admin (1.2.0) app/controllers/rails_admin/application_controller.rb:54:in `instance_eval'
+rails_admin (1.2.0) app/controllers/rails_admin/application_controller.rb:54:in `_authorize!'
+activesupport (5.1.3) lib/active_support/callbacks.rb:413:in `block in make_lambda'
+activesupport (5.1.3) lib/active_support/callbacks.rb:197:in `block (2 levels) in halting'
+actionpack (5.1.3) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.1.3) lib/active_support/callbacks.rb:198:in `block in halting'
+activesupport (5.1.3) lib/active_support/callbacks.rb:507:in `block in invoke_before'
+activesupport (5.1.3) lib/active_support/callbacks.rb:507:in `each'
+activesupport (5.1.3) lib/active_support/callbacks.rb:507:in `invoke_before'
+activesupport (5.1.3) lib/active_support/callbacks.rb:130:in `run_callbacks'
+actionpack (5.1.3) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.3) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.3) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.3) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.3) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.3) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.3) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.3) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.3) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.3) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.3) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.3) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.3) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:834:in `call'
+railties (5.1.3) lib/rails/engine.rb:522:in `call'
+railties (5.1.3) lib/rails/railtie.rb:185:in `public_send'
+railties (5.1.3) lib/rails/railtie.rb:185:in `method_missing'
+actionpack (5.1.3) lib/action_dispatch/routing/mapper.rb:17:in `block in <class:Constraints>'
+actionpack (5.1.3) lib/action_dispatch/routing/mapper.rb:46:in `serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack-pjax (1.0.0) lib/rack/pjax.rb:12:in `call'
+remotipart (1.3.1) lib/remotipart/middleware.rb:32:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.3) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.3) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.3) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.3) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.3) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.3) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/admin/user" for 127.0.0.1 at 2017-08-10 11:26:16 +0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"user"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.3ms)
+
+
+  
+CanCan::AccessDenied (You are not authorized to access this page.):
+  
+cancan (1.6.10) lib/cancan/ability.rb:208:in `authorize!'
+rails_admin (1.2.0) lib/rails_admin/extensions/cancancan/authorization_adapter.rb:11:in `initialize'
+rails_admin (1.2.0) lib/rails_admin/config.rb:153:in `new'
+rails_admin (1.2.0) lib/rails_admin/config.rb:153:in `block in authorize_with'
+rails_admin (1.2.0) app/controllers/rails_admin/application_controller.rb:54:in `instance_eval'
+rails_admin (1.2.0) app/controllers/rails_admin/application_controller.rb:54:in `_authorize!'
+activesupport (5.1.3) lib/active_support/callbacks.rb:413:in `block in make_lambda'
+activesupport (5.1.3) lib/active_support/callbacks.rb:197:in `block (2 levels) in halting'
+actionpack (5.1.3) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.1.3) lib/active_support/callbacks.rb:198:in `block in halting'
+activesupport (5.1.3) lib/active_support/callbacks.rb:507:in `block in invoke_before'
+activesupport (5.1.3) lib/active_support/callbacks.rb:507:in `each'
+activesupport (5.1.3) lib/active_support/callbacks.rb:507:in `invoke_before'
+activesupport (5.1.3) lib/active_support/callbacks.rb:130:in `run_callbacks'
+actionpack (5.1.3) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.3) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.3) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.3) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.3) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.3) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.3) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.3) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.3) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.3) lib/abstract_controller/base.rb:124:in `process'
+actionview (5.1.3) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.3) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.3) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:834:in `call'
+railties (5.1.3) lib/rails/engine.rb:522:in `call'
+railties (5.1.3) lib/rails/railtie.rb:185:in `public_send'
+railties (5.1.3) lib/rails/railtie.rb:185:in `method_missing'
+actionpack (5.1.3) lib/action_dispatch/routing/mapper.rb:17:in `block in <class:Constraints>'
+actionpack (5.1.3) lib/action_dispatch/routing/mapper.rb:46:in `serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.3) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.3) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack-pjax (1.0.0) lib/rack/pjax.rb:12:in `call'
+remotipart (1.3.1) lib/remotipart/middleware.rb:32:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.3) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.3) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.3) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.3) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.3) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.3) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.3) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/admin/user" for 127.0.0.1 at 2017-08-10 11:26:30 +0200
+  [1m[35m (5.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"user"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY users.id desc LIMIT ? OFFSET ?[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application (176.7ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_secondary_navigation.html.haml (37.3ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_navigation.html.haml (69.5ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (12.1ms)
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml (43.9ms)
+Completed 200 OK in 4483ms (Views: 2563.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:26:44 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (3.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (8.9ms)
+Completed 200 OK in 199ms (Views: 197.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:26:59 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (53.5ms)
+  Rendered rsvps/new.html.erb within layouts/application (56.1ms)
+  Rendered partials/_notifications.html.erb (8.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (3.0ms)
+Completed 200 OK in 213ms (Views: 189.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:27:03 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.7ms)
+Completed 200 OK in 124ms (Views: 118.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:27:04 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (27.8ms)
+  Rendered rsvps/new.html.erb within layouts/application (32.8ms)
+  Rendered partials/_notifications.html.erb (5.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.7ms)
+Completed 200 OK in 175ms (Views: 171.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:27:05 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (25.8ms)
+  Rendered rsvps/new.html.erb within layouts/application (28.8ms)
+  Rendered partials/_notifications.html.erb (5.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (3.3ms)
+Completed 200 OK in 164ms (Views: 158.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:27:24 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (28.5ms)
+  Rendered rsvps/new.html.erb within layouts/application (31.2ms)
+  Rendered partials/_notifications.html.erb (4.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.5ms)
+Completed 200 OK in 228ms (Views: 225.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:27:29 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (4.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (4.5ms)
+Completed 200 OK in 121ms (Views: 115.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:27:31 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (20.7ms)
+  Rendered rsvps/new.html.erb within layouts/application (26.8ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (8.7ms)
+Completed 200 OK in 214ms (Views: 212.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:27:33 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (4.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.5ms)
+Completed 200 OK in 149ms (Views: 147.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:27:34 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (52.4ms)
+  Rendered rsvps/new.html.erb within layouts/application (54.3ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.5ms)
+Completed 200 OK in 219ms (Views: 216.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:27:55 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (30.4ms)
+  Rendered rsvps/new.html.erb within layouts/application (41.9ms)
+  Rendered partials/_notifications.html.erb (8.8ms)
+  Rendered partials/_navbar.html.erb (1192.5ms)
+Completed 500 Internal Server Error in 1379ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_rsvps_url' for #<#<Class:0x007fec9c37eb10>:0x007feca811f110>
+Did you mean?  new_rsvp_url):
+    13: 
+    14:     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    15:       <ul class="nav navbar-nav">
+    16:         <li <% if current_page?(new_rsvps_url) %>class="active"<% end %>><a href="/rsvps/new">RSVP</a></li>
+    17:         <li <% if current_page?(pages_home_url) %>class="active"<% end %>><a href="/pages/home">HOME</a></li>
+    18:       </ul>
+    19: 
+  
+app/views/partials/_navbar.html.erb:16:in `_app_views_partials__navbar_html_erb__4489920422420130864_70327195455080'
+app/views/layouts/application.html.erb:17:in `_app_views_layouts_application_html_erb___1824893680967640302_70327104274220'
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:28:07 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (32.2ms)
+  Rendered rsvps/new.html.erb within layouts/application (38.7ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.3ms)
+Completed 200 OK in 219ms (Views: 215.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:28:33 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (32.5ms)
+  Rendered rsvps/new.html.erb within layouts/application (37.6ms)
+  Rendered partials/_notifications.html.erb (6.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (9.5ms)
+Completed 200 OK in 543ms (Views: 540.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:31:17 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (20.2ms)
+  Rendered rsvps/new.html.erb within layouts/application (22.4ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (2.8ms)
+Completed 200 OK in 150ms (Views: 147.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:33:34 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (28.0ms)
+  Rendered rsvps/new.html.erb within layouts/application (36.8ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (4.5ms)
+Completed 200 OK in 173ms (Views: 171.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rsvps" for 127.0.0.1 at 2017-08-10 11:33:40 +0200
+Processing by RsvpsController#index as HTML
+  Rendering rsvps/index.html.erb within layouts/application
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT "rsvps".* FROM "rsvps"[0m
+  Rendered rsvps/index.html.erb within layouts/application (3.1ms)
+  Rendered partials/_notifications.html.erb (0.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (8.0ms)
+Completed 200 OK in 177ms (Views: 168.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2017-08-10 11:33:44 +0200
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvps"[0m
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT  "rsvps".* FROM "rsvps" ORDER BY "rsvps"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (33.6ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_secondary_navigation.html.haml (16.5ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_navigation.html.haml (49.7ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (9.0ms)
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml (13.2ms)
+Completed 200 OK in 9992ms (Views: 9974.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2017-08-10 11:33:54 +0200
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvps"[0m
+  [1m[36mRsvp Load (0.3ms)[0m  [1m[34mSELECT  "rsvps".* FROM "rsvps" ORDER BY "rsvps"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (39.7ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_secondary_navigation.html.haml (22.5ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_navigation.html.haml (41.4ms)
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (15.1ms)
+  Rendering /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /var/lib/gems/2.3.0/gems/rails_admin-1.2.0/app/views/layouts/rails_admin/pjax.html.haml (17.8ms)
+Completed 200 OK in 927ms (Views: 898.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:34:08 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (2.3ms)
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.9ms)
+Completed 200 OK in 130ms (Views: 123.8ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:34:52 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.6ms)
+  Rendered partials/_notifications.html.erb (1.0ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.0ms)
+Completed 200 OK in 119ms (Views: 117.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:35:12 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.5ms)
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (8.7ms)
+Completed 200 OK in 159ms (Views: 155.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:35:35 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (7.7ms)
+Completed 200 OK in 192ms (Views: 190.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:35:44 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.1ms)
+Completed 200 OK in 140ms (Views: 136.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:35:46 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (24.5ms)
+  Rendered rsvps/new.html.erb within layouts/application (30.7ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.4ms)
+Completed 200 OK in 167ms (Views: 165.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:35:47 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered partials/_notifications.html.erb (0.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (8.7ms)
+Completed 200 OK in 110ms (Views: 108.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:36:05 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (1.9ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.8ms)
+Completed 200 OK in 543ms (Views: 541.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:36:08 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+  Rendered partials/_notifications.html.erb (1.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (10.8ms)
+Completed 200 OK in 126ms (Views: 123.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rsvps/new" for 127.0.0.1 at 2017-08-10 11:36:10 +0200
+Processing by RsvpsController#new as HTML
+  Rendering rsvps/new.html.erb within layouts/application
+  Rendered rsvps/_form.html.erb (20.2ms)
+  Rendered rsvps/new.html.erb within layouts/application (23.1ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (4.0ms)
+Completed 200 OK in 145ms (Views: 140.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:36:13 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (8.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (18.1ms)
+Completed 200 OK in 124ms (Views: 112.2ms | ActiveRecord: 8.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-10 11:36:14 +0200
+Processing by PagesController#welcome as HTML
+  Rendering pages/welcome.html.erb within layouts/application
+  Rendered pages/welcome.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (9.9ms)
+Completed 200 OK in 158ms (Views: 156.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-08-10 11:36:15 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.5ms)
+  Rendered partials/_notifications.html.erb (3.1ms)
+  [1m[36mUser Load (4.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered partials/_navbar.html.erb (6.3ms)
+Completed 200 OK in 116ms (Views: 110.9ms | ActiveRecord: 4.1ms)
+
+

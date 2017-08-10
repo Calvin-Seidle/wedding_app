@@ -1,0 +1,14 @@
+<%= simple_form_for(@rsvp) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :name, label: "Name & Surname" %>
+    <%= f.input :contact_number, label: "Contact Number" %>
+    <%= f.input :attending, as: :radio_buttons %>
+    <%= f.input :number_of_guests, label: "Number Of Guests Attending" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+
+<% end %>
